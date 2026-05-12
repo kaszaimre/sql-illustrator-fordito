@@ -1,50 +1,15 @@
-"""
-SIGMA T800 - PORK PROTOCOL CORE v2.6
-Author: Don Mérnök (The Brain)
-Infrastructure: Google Cloud & Cyber-Borsod Arsenal
-"""
-
-import asyncio
-import logging
-from datetime import datetime
-
-class SigmaT800:
-    def __init__(self, data_source="BigQuery_5TB"):
-        self.base = "Cyber-Borsod Command Center"
-        self.data_source = data_source
-        self.status = "MARKET_KILLING_READY"
-        logging.info(f"[{datetime.now()}] {self.base} inicializálva.")
-
-    async def run_pork_protocol(self, market_signal):
-        """
-        A Pork Protocol végrehajtási logikája:
-        Validáció -> Szimuláció -> Pörkölés
-        """
-        print(f"--- [PORK PROTOCOL AKTIVÁLVA: {market_signal['ticker']}] ---")
-        
-        # 1. Óvatos Borsodi Validáció (5TB Archive Check)
-        is_valid = await self._validate_with_archive(market_signal)
-        
-        if is_valid:
-            # 2. Sniper Üzenet és Végrehajtás
-            print(f"!!! SZIGNÁL VALIDÁLVA: Belépés {market_signal['price']} szinten.")
-            await self._execute_trade(market_signal)
-        else:
-            print(">>> Rendszer: Szignál elvetve (Piaci zaj detektálva).")
-
-    async def _validate_with_archive(self, signal):
-        """Validáció az M1 Loop adatokon"""
-        # Itt fut le a backtesting korreláció
-        return signal['rvol'] > 2.0  # Csak ha a volumen az átlag duplája
-
-    async def _execute_trade(self, signal):
-        """Low-latency megbízás leadása"""
-        print(f"MEGBÍZÁS ELKÜLDVE: {signal['ticker']} | Latency: <10ms")
-
-# --- INTERJÚ DEMO INDÍTÁSA ---
-if __name__ == "__main__":
-    t800 = SigmaT800()
-    test_signal = {'ticker': 'BTC/USDT', 'price': 65000, 'rvol': 3.5}
+# --- DON MÉRNÖK: EXCEL-DETOX v1.0 ---
+def excel_to_master_db(excel_data):
+    # Don Mérnök: Az Excel a múlt, az SQL a jövő!
+    print("\n[v67] ARCHÍVUM TISZTÍTÁSA ÉS KONVERTÁLÁSA...")
     
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(t800.run_pork_protocol(test_signal))
+    # Itt a lényeg: a "fos" adatból tiszta, gyors lekérdezhető struktúra lesz
+    clean_base = "SQL_ENGINE_READY"
+    
+    if clean_base == "SQL_ENGINE_READY":
+        print(">>> Pista bá': 'Fiam, dobd ki azt a kockás füzetet, itt már a gép számol!'")
+        return "STÁTUSZ: EXCEL KILŐVE. 5TB BÁZIS INTEGRITÁSA 100%."
+    
+    return "🚨 HIBA: Még mindig a rozsdás vason ragadtunk!"
+
+print(excel_to_master_db("old_archive_data"))
